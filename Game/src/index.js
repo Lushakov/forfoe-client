@@ -1,9 +1,27 @@
 import '../public/scss/main.scss'
-import Game from './game.js'
+import game from './game.js'
 
-Game.init();
-Game.start();
 
+const conf = {
+    shem: {
+        player: ['point', 'asteroid'],
+        asteroid: ['point'],
+        bullet: false,
+        point: false,
+        collapsar: false
+    },
+    keyboard: {
+        left: 37,
+        up: 38,
+        right: 39,
+        back: 40,
+        stop: 32
+    }
+}
+
+game.init(conf);
+game.start();
+/*
 $('html').keydown(function(e){
     if(e.which == 37) Game.controller.left = true;
     if(e.which == 38) Game.controller.up = true;
@@ -18,5 +36,5 @@ $('html').keyup(function(e){
     if(e.which == 40) Game.controller.back = false;
     if(e.which == 32) Game.controller.stop = false;
 }); 
-
-export default Game;
+*/
+export default game;

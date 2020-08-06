@@ -3,8 +3,8 @@ const common = require('./webpack.common.js');
 
 
 const CONFIG = {
-  //host: '192.168.3.2',
-  host: 'localhost',
+  host: '45.140.168.147',
+  //host: 'localhost',
   port: 8082,
 }
 

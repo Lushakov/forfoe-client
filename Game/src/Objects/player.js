@@ -44,18 +44,20 @@ Player.prototype.action = function(game, slave){
         $('body').css({background: '#fff'});
     }
     
-    if(game.controller.left) this.rotation += this.kRotation;
-    if(game.controller.right) this.rotation -= this.kRotation;
+    if(game.keyboard.left) this.rotation += this.kRotation;
+    if(game.keyboard.right) this.rotation -= this.kRotation;
     
 
-    if(game.controller.stop){
-        this.speedX *= 0.93;
-        this.speedY *= 0.93;
+    if(game.keyboard.stop){
+        this.rotation -= this.kRotation;
+        this.rotation += this.kRotation;
+        //this.speedX = 5;
+        //this.speedY = 5;
     }else
-    if(game.controller.up) {
+    if(game.keyboard.up) {
         this.speedX += Math.cos(this.rotation * Math.PI / 180) * this.accel;
         this.speedY -= Math.sin(this.rotation * Math.PI / 180) * this.accel;
-    } else if(game.controller.back) {
+    } else if(game.keyboard.back) {
         this.speedX -= Math.cos(this.rotation * Math.PI / 180) * this.accel;
         this.speedY += Math.sin(this.rotation * Math.PI / 180) * this.accel;
     }else{
@@ -80,7 +82,7 @@ Player.prototype.action = function(game, slave){
         transform: 'rotate(' + (-this.rotation) + 'deg)'
     });
     /*
-    if(game.controller.fire)
+    if(game.keyboard.fire)
         game.world.bullet.push(new bullet({
             rotation: this.rotation,
             x: this.x,
@@ -95,11 +97,11 @@ Player.prototype.action = function(game, slave){
         'left: ' + Math.round(this.x) + '<br><br>' +
         'player.speedX: ' + Math.round(this.speedX*100)/100 + '<br>' +
         'player.speedY: ' + Math.round(this.speedY*100)/100 + '<br><br>' +
-        'game.controller.left: ' + game.controller.left + '<br>' +
-        'game.controller.right: ' + game.controller.right + '<br>' +
-        'game.controller.up: ' + game.controller.up + '<br>'+
-        'game.controller.back: ' + game.controller.back + '<br>'+
-        'game.controller.fire: ' + game.controller.fire + '<br><br>'+
+        'game.keyboard.left: ' + game.keyboard.left + '<br>' +
+        'game.keyboard.right: ' + game.keyboard.right + '<br>' +
+        'game.keyboard.up: ' + game.keyboard.up + '<br>'+
+        'game.keyboard.back: ' + game.keyboard.back + '<br>'+
+        'game.keyboard.fire: ' + game.keyboard.fire + '<br><br>'+
         'point = ' + this.point
     );
 }

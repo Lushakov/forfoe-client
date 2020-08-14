@@ -36,7 +36,7 @@ Point.prototype.incId = function(){
     return this.counterId;
 }
 
-Point.prototype.class = 'point';
+Point.prototype.className = 'point';
 Point.prototype.type = 'round';
 
 export default Point; 

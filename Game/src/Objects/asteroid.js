@@ -62,7 +62,7 @@ Asteroid.prototype.incId = function(){
 Asteroid.prototype.render = function(){ 
 }
 
-Asteroid.prototype.class = 'asteroid';
+Asteroid.prototype.className = 'asteroid';
 Asteroid.prototype.type = 'round';
 
 export default Asteroid;

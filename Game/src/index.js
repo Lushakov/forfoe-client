@@ -1,6 +1,9 @@
 import '../public/scss/main.scss'
 import game from './game.js'
 
+import Player from './Objects/player.js'
+import Point from './Objects/point.js'
+import Asteroid from './Objects/asteroid.js'
 
 const conf = {
     shem: {
@@ -19,7 +22,23 @@ const conf = {
     }
 }
 
+const world = [
+    {
+        class: Player,
+    },
+    {
+        class: Point,
+    },
+    {
+        class: Asteroid,
+        amount: 10
+    },
+]
+
 game.init(conf);
+console.log(game.world);
+game.fillWorld(world);
+//console.log(game.world);
 game.start();
 /*
 $('html').keydown(function(e){

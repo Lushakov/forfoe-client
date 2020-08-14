@@ -108,7 +108,7 @@ Player.prototype.action = function(game, slave){
 
 Player.prototype.render = function(){
 }
-Player.prototype.class = 'player';
+Player.prototype.className = 'player';
 Player.prototype.type = 'round';
 
 

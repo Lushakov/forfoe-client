@@ -2,20 +2,22 @@ import compare from './detection.js'
 
 let result = {};
 
-const check = (shem, world) => {
-    let m, s;                                           //master's name, slave's name 
-
-    for (m in shem) {                         
-        if (!shem[m]) saveListFalse(world[m])
+const checkCollision = (shem, world) => {
+    for (let masterClassName in shem) {                         
+        if (!shem[masterClassName]) saveListFalse(world[masterClassName])
         else 
-        for (let i = 0; i < shem[m].length; i++) {
-            s = shem[m][i];
-            bust(world, m, s)
+        for (let i = 0; i < shem[masterClassName].length; i++) {
+
+            let slaveClassName = shem[masterClassName][i];
+
+            bust(world, masterClassName, slaveClassName)
         }
     }
-    return result
+    
+    return result;
 }
 
+//saves masters without their own slaves in the 'shem'
 const saveListFalse = (mlist) => {
     let mlength = mlist.length,
         m;
@@ -37,10 +39,12 @@ const bust = (world, a, b) => {
         for (m = 0; m < mlength; m++) 
             for (s = 0; s < slength; s++){
                 save(mlist[m], m, slist[s], s)
-                //let master = mlist[m],
-                //    slave = slist[s]
-                //if (compare(master, slave)) save(master, m, slave, s)
             }
+    //
+    //sometimes an instance of the master class can be a slave for the master
+    //
+    //for example it could be for this type of 'shem': {Asteroids: ['Asteroids']}
+    //
     else                                        //master-master
         for (m = 0; m < mlength; m++) 
             for (s = m + 1; s < slength; s++)
@@ -49,13 +53,13 @@ const bust = (world, a, b) => {
 
 
 const save = (master, m, slave, s) => {
-    let name = master.class;
+    let name = master.constructor.name;
 
     if (result[name] == undefined)                 //result: {'Class': [{master: Object, m: Number, list: [Object, ...]}, ...], ...}
         result[name] = [];
 
     if (result[name][m] == undefined)
-        result[name].push({ master: master, list: [] });  // не очень чётко
+        result[name].push({ master: master, list: [] });
 
     if (slave && compare(master, slave)) {
         result[name][m].list.push(slave);          // note: optimization possible (add containers for slave types)
@@ -63,5 +67,5 @@ const save = (master, m, slave, s) => {
     } 
 }
     
-export default check;
+export default checkCollision;
 

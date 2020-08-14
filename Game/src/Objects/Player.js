@@ -1,11 +1,9 @@
-import Point from './point.js';
-//import bullet from './bullet.js'
-    
 function Player() {
+    this.type = 'round'
     this.radius = 25;
     this.kRotation = 6;
     this.rotation = 0;
-    this.accel = 0.5;
+    this.accel = 0.6;
     this.decay = 0.9;
     this.speedX = 0;
     this.speedY = 0;
@@ -19,31 +17,38 @@ function Player() {
     this.height = '';
     this.width = '';
 }
-Player.prototype.action = function(game, slave){
-    if(slave.length){
-        for(var i=0; i<slave.length; i++){
-            if(slave[i].class == 'point'){
-                var n = slave[i]._n;
-                console.log(n);
-                $('#' + slave[i].id).detach();
-                delete game.world.point[n];    //'элемент массива в ворлде теперь андефайнд.
-                game.world.point.splice(n, 1); /*определение столкновений определяется последовательно от 0 до крайнего элемента массива ворлд. 
-                Сохраняються столкновения соответственно. Отсюда: удаление пустых элементов массива ворлд должно происходить в обратном направлении*/
 
-                game.world.point.push(new Point());
-                console.log('coll');
-                
+
+//
+//this method must be
+//
+Player.prototype.action = function(game, slavesList){
+
+    if(slavesList.length){
+        for(var i=0; i < slavesList.length; i++){
+            if(slavesList[i].getClassName() == 'Point'){
+                slavesList[i].changePosition()
                 this.point++;
-            }else if(slave[i].class == 'asteroid'){
+            }else if(slavesList[i].getClassName() == 'Asteroid'){
                 console.log('asteroid');
                 $('body').css({background: 'red'});
             }
         }
-    }else{
-        //если нет столкновений
-        $('body').css({background: '#fff'});
     }
-    
+    else $('body').css({background: '#fff'});
+
+    this.changePosition(game);
+    this.showStatus(game);
+}
+
+Player.prototype.getClassName = function() {
+    return 'Player'
+}
+
+Player.className = 'Player';
+
+
+Player.prototype.changePosition = function(game) {
     if(game.keyboard.left) this.rotation += this.kRotation;
     if(game.keyboard.right) this.rotation -= this.kRotation;
     
@@ -51,19 +56,20 @@ Player.prototype.action = function(game, slave){
     if(game.keyboard.stop){
         this.rotation -= this.kRotation;
         this.rotation += this.kRotation;
-        //this.speedX = 5;
-        //this.speedY = 5;
-    }else
-    if(game.keyboard.up) {
+
+    } else if(game.keyboard.up) {
         this.speedX += Math.cos(this.rotation * Math.PI / 180) * this.accel;
         this.speedY -= Math.sin(this.rotation * Math.PI / 180) * this.accel;
+
     } else if(game.keyboard.back) {
         this.speedX -= Math.cos(this.rotation * Math.PI / 180) * this.accel;
         this.speedY += Math.sin(this.rotation * Math.PI / 180) * this.accel;
-    }else{
+
+    } else {
         this.speedX *= this.decay;
         this.speedY *= this.decay;
     }
+
     if(Math.abs(this.speedX) > this.maxSpeed) this.speedX = this.speedX/(Math.abs(this.speedX)/this.maxSpeed);
     if(Math.abs(this.speedY) > this.maxSpeed) this.speedY = this.speedY/(Math.abs(this.speedY)/this.maxSpeed);
     this.x += this.speedX;
@@ -81,6 +87,7 @@ Player.prototype.action = function(game, slave){
         left: this.x - this.radius,
         transform: 'rotate(' + (-this.rotation) + 'deg)'
     });
+
     /*
     if(game.keyboard.fire)
         game.world.bullet.push(new bullet({
@@ -89,8 +96,9 @@ Player.prototype.action = function(game, slave){
             y: this.y
         }));
     */
-    // info
+}
 
+Player.prototype.showStatus = function(game) {
     $('#info').html(
         'rotation: ' + this.rotation + '<br>' +
         'top: ' + Math.round(this.y) + '<br>' +
@@ -101,15 +109,11 @@ Player.prototype.action = function(game, slave){
         'game.keyboard.right: ' + game.keyboard.right + '<br>' +
         'game.keyboard.up: ' + game.keyboard.up + '<br>'+
         'game.keyboard.back: ' + game.keyboard.back + '<br>'+
-        'game.keyboard.fire: ' + game.keyboard.fire + '<br><br>'+
+        //'game.keyboard.fire: ' + game.keyboard.fire + '<br><br>'+
+        '<br><br>'+
         'point = ' + this.point
     );
 }
-
-Player.prototype.render = function(){
-}
-Player.prototype.className = 'player';
-Player.prototype.type = 'round';
 
 
 export default Player;

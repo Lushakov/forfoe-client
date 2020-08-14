@@ -1,4 +1,3 @@
-//import 'bootstrap/dist/css/bootstrap.min.css';
 import '../public/scss/main.scss';
 import '../public/css/main.css';
 import App from './App.js'

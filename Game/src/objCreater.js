@@ -1,6 +1,6 @@
 const objCreater = {};
 
-//here uses 'lodash' as ​​_ 
+//here uses 'lodash' as '​​_' and JQuery 
 //it's available everywhere, see webpack config
 
 objCreater.shem = (game, conf) => {

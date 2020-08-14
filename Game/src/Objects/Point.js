@@ -1,4 +1,5 @@
 function Point(option) {
+    this.type = 'round';
         
     (option && option.x) ?
         this.x = option.x
@@ -26,17 +27,32 @@ function Point(option) {
     );
 }
 
-Point.prototype.action = function(){}
-Point.prototype.position = function(){
-    
+//
+//this method must be
+//
+Point.prototype.action = function(){} 
+
+Point.prototype.getClassName = function() {
+    return 'Point'
 }
+
+Point.className = 'Point';
+
+Point.prototype.changePosition = function() {
+    this.x = Math.round($(window).width() * Math.random());
+    this.y = Math.round($(window).height() * Math.random());
+    $('.point').css({
+        top: this.y - this.radius,
+        left: this.x - this.radius,
+    });
+}
+
+
 Point.prototype.counterId = -1;
 Point.prototype.incId = function(){
     Point.prototype.counterId++;
     return this.counterId;
 }
 
-Point.prototype.className = 'point';
-Point.prototype.type = 'round';
 
 export default Point; 

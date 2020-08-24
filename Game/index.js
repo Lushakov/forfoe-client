@@ -1,5 +1,4 @@
-import '../public/scss/main.scss'
-import game from './game.js'
+import game from './Core'
 
 import Player from './Objects/Player.js'
 import Point from './Objects/Point.js'

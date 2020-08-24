@@ -1,0 +1,95 @@
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+#player{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 51px;
+    height: 51px;
+    border: 2px solid rgb(68, 63, 110);
+    border-radius: 50%;
+    background: rgb(255, 255, 255);
+}
+#player hr{
+    position: absolute;
+    top: 17px;
+    left: 26px;
+    width: 50%;
+    height: 2px;
+    background: rgb(68, 63, 110);
+    border: none;
+}
+.point{
+    position: absolute;
+    width: 51px;
+    height: 51px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    background: #fd5f5f;
+}
+.asteroid{
+    position: absolute;
+    width: 51px;
+    height: 51px;
+    border: 0px solid rgb(255, 255, 255);
+    border: 2px solid rgb(32, 32, 32);
+    border-radius: 50%;
+}
+#asteroid_0{
+    background-image: url(../img/1.jpg);
+}
+#asteroid_1{
+    background-image: url(../img/2.jpg);
+}
+#asteroid_2{
+    background-image: url(../img/3.jpg);
+}
+#asteroid_3{
+    background-image: url(../img/4.jpg);
+}
+#asteroid_4{
+    background-image: url(../img/5.jpg);
+}
+
+.bullet{
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    background: rgba(255, 0, 0, 0.685);
+}
+.box_window{
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../img/bg.png);
+    background-size: 200px;
+    opacity: 0.5;
+}
+.alert{
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%; 
+    z-index: 999;
+}
+.time_info{
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    width: 500px;
+    height: 100px;
+    margin: auto;
+    font-size: 90px;
+    text-align: center;
+}

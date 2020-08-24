@@ -3,6 +3,7 @@ const common = require('./webpack.common.js');
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'production',
@@ -12,5 +13,8 @@ module.exports = merge(common, {
     new HtmlWebpackPlugin({
       title: 'demo',
     }),
+    new CopyWebpackPlugin([
+      { from: `./UI/public/img`, to: `./img` },
+    ]),
   ]
 });

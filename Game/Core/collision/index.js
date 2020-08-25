@@ -43,7 +43,7 @@ const bust = (world, a, b) => {
     //
     //sometimes an instance of the master class can be a slave for the master
     //
-    //for example it could be for this type of 'shem': {Asteroids: ['Asteroids']}
+    //for example it could be for this type of 'shem': {Asteroid: ['Asteroid']}
     //
     else                                        //master-master
         for (m = 0; m < mlength; m++) 
@@ -53,7 +53,7 @@ const bust = (world, a, b) => {
 
 
 const save = (master, m, slave, s) => {
-    let name = master.constructor.name;
+    let name = master.getClassName();
 
     if (result[name] == undefined)                 //result: {'Class': [{master: Object, m: Number, list: [Object, ...]}, ...], ...}
         result[name] = [];

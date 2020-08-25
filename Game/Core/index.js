@@ -37,9 +37,6 @@ game.fillWorld = (arr) => {
         let className  = item.class.className;
         let properties = item.properties;
         let amount     = item.amount || 1;
-        console.log(game);
-        console.log(arr);
-        console.log(item.class.className);
         for(let i=0; i < amount; i++) {
             game.world[className].push(new item.class(properties));
         }

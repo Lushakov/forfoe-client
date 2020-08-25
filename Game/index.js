@@ -27,7 +27,7 @@ const world = [
     },
     {
         class: Asteroid,
-        amount: 10
+        amount: 5
     },
     {
         class: Point,

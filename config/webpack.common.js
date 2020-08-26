@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 
 const PATH = {
   app: path.resolve(__dirname, '../UI/src/index.js'),
@@ -16,7 +15,6 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: PATH.dist,
-    //publicPath: '/public/'
   },
 
   plugins: [
